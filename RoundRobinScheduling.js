@@ -74,15 +74,15 @@ function roundRobin(processes, quantum) {
 
         console.log("Waiting Times:");
         processes.forEach(process => {
-          const waitingTime = process.waitingTime < 0 ? 0 : process.waitingTime;
+          const waitingTime = process.waitingTime < 0 ? 0 : process.waitingTime; // Jika waitingTime kurang dari 0, ubah menjadi 0 (menghindari nilai negatif)
           console.log(`${process.name}: ${waitingTime} ms`);
         }); console.log("")
         
-        // Menampilkan jumlah dari hasil tiap-tiap waktu
+        // Menampilkan jumlah dari hasil tiap-tiap waktu proses
         console.log(`Total Completion Time: ${totalCompletionTime} ms`); // Mencetak total completion time
         console.log(`Total Turn Around Time: ${totalTurnAroundTime} ms`);
 
-        const sumWaitingTime = totalWaitingTime < 0 ? 0 : totalWaitingTime;
+        const sumWaitingTime = totalWaitingTime < 0 ? 0 : totalWaitingTime; 
         console.log(`Total Waiting Time: ${sumWaitingTime} ms`);
         console.log("");
 

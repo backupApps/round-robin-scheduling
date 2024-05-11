@@ -118,9 +118,6 @@ function roundRobin(processes, quantum) {
                totalWaitingTime += process.waitingTime;
            });
 
-           const space = document.createElement('div');
-           space.textContent = "Done!";
-
            // Menampilkan hasil tiap-tiap proses 
            const completionTimesOutput = document.createElement('div');
            completionTimesOutput.textContent = "Completion Times:";
@@ -145,15 +142,30 @@ function roundRobin(processes, quantum) {
            output.appendChild(waitingTimesOutput);
            processes.forEach(process => {
                const processOutput = document.createElement('div');
-               processOutput.textContent = `${process.name}: ${process.waitingTime} ms`;
+               const waitingTime = process.waitingTime < 0 ? 0 : process.waitingTime; // Jika waitingTime kurang dari 0, ubah menjadi 0 (menghindari nilai negatif)
+               processOutput.textContent = `${process.name}: ${waitingTime} ms`;
                output.appendChild(processOutput);
            });
+
+           // Menampilkan jumlah dari hasil tiap-tiap waktu proses
+           const outputCT = document.createElement('div');
+           outputCT.textContent = `Sum Completion Time: ${totalCompletionTime} ms`; // Mencetak total completion time
+           output.appendChild(outputCT);
+
+           const outputTAT = document.createElement('div');
+           outputTAT.textContent = `Sum Turn Around Time: ${totalTurnAroundTime} ms`;
+           output.appendChild(outputTAT);
+
+           const outputWT = document.createElement('div');
+           const sumWaitingTime = totalWaitingTime < 0 ? 0 : totalWaitingTime;
+           outputWT.textContent = `Sum Waiting Time: ${sumWaitingTime} ms`;
+           output.appendChild(outputWT);
 
            // Menghitung Average Turn Around Time (ATAT)
            const averageTurnAroundTime = totalTurnAroundTime / processes.length;
 
            // Menghitung Average Waiting Time (AWT)
-           const averageWaitingTime = totalWaitingTime / processes.length;
+           const averageWaitingTime = sumWaitingTime / processes.length;
            const averagesOutput = document.createElement('div');
            const averagesOutput2 = document.createElement('div');
            averagesOutput.textContent = `Average Turn Around Time: ${averageTurnAroundTime.toFixed(2)} ms`;
