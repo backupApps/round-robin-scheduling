@@ -1,0 +1,13 @@
+Kelas Process digunakan untuk membuat objek yang mewakili masing-masing proses. Ini memiliki empat properti: name (nama proses), arrivalTime (waktu kedatangan proses), burstTime (waktu burst proses), dan remainingTime (waktu yang tersisa untuk proses dieksekusi).
+
+Fungsi roundRobin() adalah implementasi algoritma Round-Robin Scheduling. Variabel time digunakan untuk melacak waktu saat ini dalam algoritma. remainingProcesses adalah jumlah proses yang masih harus dieksekusi. queue adalah antrian untuk menampung proses-proses yang siap dieksekusi.
+
+Loop while() ini akan berjalan selama masih ada proses yang harus dieksekusi. Di dalam loop memeriksa setiap proses. Jika proses telah tiba (arrivalTime <= time), belum ada dalam antrian, dan memiliki waktu tersisa untuk dieksekusi, maka akan dimasukkan ke dalam antrian.
+
+Jika antrian kosong, artinya tidak ada proses yang siap dieksekusi pada saat ini, maka waktu akan ditambahkan satu unit dan proses akan melanjutkan ke iterasi berikutnya dalam loop while().
+
+mengambil proses pertama dari antrian dengan queue.shift().  mencetak informasi tentang proses yang sedang dieksekusi, termasuk waktu mulai dan waktu selesai yang dihitung menggunakan quantum atau sisa waktu yang tersisa dari proses.
+
+memeriksa apakah sisa waktu dari proses kurang dari atau sama dengan quantum. Jika ya, proses tersebut akan selesai, waktu akan ditambahkan dengan sisa waktu proses, dan jumlah proses yang tersisa akan dikurangi satu. Jika tidak, waktu akan ditambahkan dengan quantum, dan sisa waktu proses akan dikurangi dengan quantum.
+
+memeriksa proses lain yang tiba sebelum atau pada waktu saat ini dan belum dimasukkan ke dalam antrian. Jika ada, proses tersebut akan dimasukkan ke dalam antrian.

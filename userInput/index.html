@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round-Robin Scheduling</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Round-Robin Scheduling</h1>
+        <form id="input-form">
+            <button type="button" onclick="addProcess()">Add Process</button>
+            <button type="button" onclick="removeProcess()">Remove Process</button>
+            <div id="input-container"></div>
+            <input class="quantum" type="" id="quantum" name="quantum" placeholder="Quantum" required><br/>
+            <button type="submit">Run Round-Robin Scheduling</button>
+        </form>
+        <div id="output"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
