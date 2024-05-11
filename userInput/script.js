@@ -118,6 +118,9 @@ function roundRobin(processes, quantum) {
                totalWaitingTime += process.waitingTime;
            });
 
+           const space = document.createElement('div');
+           space.textContent = "Done!";
+
            // Menampilkan hasil tiap-tiap proses 
            const completionTimesOutput = document.createElement('div');
            completionTimesOutput.textContent = "Completion Times:";
@@ -160,7 +163,7 @@ function roundRobin(processes, quantum) {
 
        }
 
-       setTimeout(executeNextProcess, 4);
+       setTimeout(executeNextProcess, 400);
    }
 
    executeNextProcess();

@@ -74,13 +74,16 @@ function roundRobin(processes, quantum) {
 
         console.log("Waiting Times:");
         processes.forEach(process => {
-          console.log(`${process.name}: ${process.waitingTime} ms`);
+          const waitingTime = process.waitingTime < 0 ? 0 : process.waitingTime;
+          console.log(`${process.name}: ${waitingTime} ms`);
         }); console.log("")
         
         // Menampilkan jumlah dari hasil tiap-tiap waktu
         console.log(`Total Completion Time: ${totalCompletionTime} ms`); // Mencetak total completion time
         console.log(`Total Turn Around Time: ${totalTurnAroundTime} ms`);
-        console.log(`Total Waiting Time: ${totalWaitingTime} ms`);
+
+        const sumWaitingTime = totalWaitingTime < 0 ? 0 : totalWaitingTime;
+        console.log(`Total Waiting Time: ${sumWaitingTime} ms`);
         console.log("");
 
         // Menghitung Average Turn Around Time (ATAT)
@@ -88,8 +91,8 @@ function roundRobin(processes, quantum) {
         console.log(`Average Turn Around Time: ${averageTurnAroundTime.toFixed(2)} ms`);
 
         // Menghitung Average Waiting Time (AWT)
-        const averageWaitingTime = totalWaitingTime / processes.length;
-        console.log(`Average Waiting Time: ${averageWaitingTime.toFixed(2)} ms`);
+        const averageWaitingTime = sumWaitingTime / processes.length;
+        console.log(`Average Waiting Time: ${averageWaitingTime < 0 ? 0 : averageWaitingTime.toFixed(2)} ms`);
     }
 
     setTimeout(executeNextProcess, 4);
@@ -100,13 +103,13 @@ function roundRobin(processes, quantum) {
 
 function main() {
   const processes = [
-      new Process("P1", 1, 5),
+      new Process("P1", 1, 4),
       new Process("P2", 3, 7),
       new Process("P3", 0, 6),
       new Process("P4", 4, 4),
       new Process("P5", 5, 3),
   ];
-  const quantum = 2;
+  const quantum = 4;
   console.log("Round-Robin Scheduling:");
   roundRobin(processes, quantum);
 }
